@@ -1,6 +1,10 @@
 import styles from './Heading.module.css'
 
-export function Heading(){
+type HeadingPropos = {
+    children: React.ReactNode; //aceita qualquer tipo de children
+}
 
-    return <h1 className={styles.heading}>Olá mundo (do App)!</h1>
+//desestruturando diretamente no parametrp
+export function Heading({ children }: HeadingPropos){
+    return <h1 className={styles.heading}>{children}</h1>
 }

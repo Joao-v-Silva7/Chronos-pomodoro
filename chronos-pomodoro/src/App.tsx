@@ -6,6 +6,7 @@ import './styles/global.css'
 import { Menu } from './components/Menu';
 import { CountDown } from './components/CountDown';
 import { DefaultInput } from './components/DefaultInput';
+import { Cycles } from './components/cycles';
 
 export function App(){
     return (
@@ -32,14 +33,14 @@ export function App(){
                     placeholder='Digite algo'
                     />
                 </div>
-
+            
                 <div className="formRow">
                     <p>Lorem ipsum dolor sit amet.</p>
                 </div>
 
                 <div className="formRow">
-                    <p>Ciclos</p>
-                    <p>0 0 0 0 0 0</p>
+                    <Cycles />
+
                 </div>
 
                 <div className="formRow">

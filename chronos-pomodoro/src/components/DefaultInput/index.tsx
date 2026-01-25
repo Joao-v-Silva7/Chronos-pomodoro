@@ -1,4 +1,6 @@
-//input do prorpio JSX
+import styles from './styles.module.css'
+
+//input do proprio JSX
 type DefaultInputProps = {
     id: string;
     labelText: string;
@@ -8,7 +10,7 @@ export function DefaultInput({id, type, labelText, ...rest }: DefaultInputProps)
     return(
         <>
         <label htmlFor={id}>{labelText}</label>
-        <input id={id} type={type} {...rest}/>
+        <input id={id} type={type} {...rest} className={styles.input}/>
         </>
     )
 }

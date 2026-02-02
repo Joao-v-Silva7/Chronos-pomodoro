@@ -1,6 +1,6 @@
 import { HistoryIcon, HouseIcon, SettingsIcon, SunIcon } from 'lucide-react'
 import styles from './styles.module.css'
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 type AvailableThemes = 'dark' | 'light';
 
@@ -11,18 +11,33 @@ export function Menu(){
         e: React.MouseEvent<HTMLAnchorElement, MouseEvent>
     ){
         e.preventDefault(); //não segue o link
-        console.log('clicadooooooooooooo')
 
         setTheme(prevTheme => {
             const nextTheme = prevTheme === 'dark' ? 'light' : 'dark'
             return nextTheme;
         });
-
-        // document.documentElement.setAttribute('data-theme', theme);
     }
+    /*
+    useEffect(() =>{
+        console.log('useEffect sem dependências', Date.now());
+    }); // Executado toda vez que o componente renderiza na tela */
 
+    /*
+    useEffect(() => {
+        console.log('useEffect com  arrays deps vazio', Date.now());
+    }, []); // Executa apenas quando o React montar o componente na tela pela primeira vez  */
+
+    useEffect(() =>{
+        console.log('Theme mudou', theme, Date.now());
+         document.documentElement.setAttribute('data-theme', theme);
+
+         return () => {
+            console.log('Olha, este componente será atualizado'); // exemplo de uma clean up limpa a pagina se tiver sujeira antes de executar o componente
+         }
+    }, [theme]); // Executa apenas quando o valor de theme muda
     return (
     <nav className={styles.menu}>
+        <h1>{theme}</h1>
         <a 
         className={styles.menuLink} 
         href='#' 
@@ -34,7 +49,8 @@ export function Menu(){
 
         <a 
         className={styles.menuLink} 
-        href='#' aria-label='Ver histórico' 
+        href='#' 
+        aria-label='Ver histórico'
         title='Histórico'
         >
             <HistoryIcon />
@@ -42,7 +58,8 @@ export function Menu(){
 
         <a 
         className={styles.menuLink} 
-        href='#' aria-label='Ver configurações' 
+        href='#' 
+        aria-label='Ver configurações' 
         title='Configurações'
         >
             <SettingsIcon/>
@@ -51,7 +68,7 @@ export function Menu(){
         <a 
         className={styles.menuLink} 
         href='#' 
-        aria-label='Ir para a home' 
+        aria-label='Trocar o tema' 
         title='Trocar tema'
         onClick={handleThemeChange}
         >

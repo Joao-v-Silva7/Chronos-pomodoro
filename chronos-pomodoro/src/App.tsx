@@ -4,6 +4,7 @@ import './styles/theme.css';
 import './styles/global.css'
 import { useState } from 'react';
 import type { TaskStateModel } from './models/TaskStateModel';
+import { TaskContext } from './contexts/TaskContext';
 
 
 const initialState: TaskStateModel = {
@@ -22,5 +23,11 @@ const initialState: TaskStateModel = {
 export function App(){
     const [state, setState] = useState(initialState)
     
-    return <Home />
+    //Context envolvido em um provider, e passando o value
+    // Provider que passa o valor para os componentes envolvidos nele
+    return (
+    <TaskContext.Provider value={{outraCoisa:321}}> 
+        <Home />
+    </TaskContext.Provider>
+)
 }

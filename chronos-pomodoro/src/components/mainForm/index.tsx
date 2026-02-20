@@ -2,16 +2,15 @@ import { PlayCircleIcon } from "lucide-react";
 import { Cycles } from "../cycles";
 import { DefaultButton } from "../DefaultButton";
 import { DefaultInput } from "../DefaultInput";
-import { useRef, useState } from "react";
+import { useRef } from "react";
 
 export function MainForm (){
-    const [taskName, setTaskName] = useState('');
     const taskNameInput = useRef<HTMLInputElement>(null);
 
     function handleCreateNewTask(e: React.FormEvent<HTMLFormElement>){
         e.preventDefault()
 
-        console.log('deu certo', taskName, taskNameInput.current.value)
+        console.log('deu certo')
     }
 
     return(

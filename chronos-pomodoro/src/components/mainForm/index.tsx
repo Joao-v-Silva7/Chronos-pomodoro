@@ -6,10 +6,15 @@ import { useRef } from "react";
 import { toast } from "react-hot-toast";
 import type { TaskModel } from "../../models/TaskModel";
 import { useTaskContext } from "../../contexts/TaskContext/useTaskContext";
+import { getNextCycle } from "../../utils/getNextCycle";
 
 export function MainForm (){
-    const { setState } = useTaskContext()
+    const { state, setState } = useTaskContext()
     const taskNameInput = useRef<HTMLInputElement>(null);
+
+    // Ciclos
+    const nextCycle = getNextCycle(state.currentCycle);
+    console.log(nextCycle);
 
     function handleCreateNewTask(e: React.FormEvent<HTMLFormElement>){
         e.preventDefault()
@@ -40,7 +45,7 @@ export function MainForm (){
                 ...prevState,
                 config: {...prevState.config},
                 activeTask: newTask,
-                currentCycle: 1, //conferir depois,
+                currentCycle: nextCycle,
                 secondsRemaining,
                 formattedSecondsRemaining: '00:00',
                 task: [...prevState.task, newTask],

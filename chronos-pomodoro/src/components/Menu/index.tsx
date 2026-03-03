@@ -17,11 +17,8 @@ export function Menu(){
     }
 
     //função pra lidar com troca de tema
-    function handleThemeChange(
-        e: React.MouseEvent<HTMLAnchorElement, MouseEvent>
-    ){
+    function handleThemeChange(e: React.MouseEvent<HTMLAnchorElement, MouseEvent>){
         e.preventDefault(); //não segue o link
-
         setTheme(prevTheme => {
             const nextTheme = prevTheme === 'dark' ? 'light' : 'dark'
             return nextTheme;
@@ -38,7 +35,6 @@ export function Menu(){
     }, []); // Executa apenas quando o React montar o componente na tela pela primeira vez  */
 
     useEffect(() =>{
-        console.log('Theme mudou', theme, Date.now());
          document.documentElement.setAttribute('data-theme', theme);
          localStorage.setItem('theme', theme); //salvando o tema no localStorage
     }, [theme]); // Executa apenas quando o valor de theme muda

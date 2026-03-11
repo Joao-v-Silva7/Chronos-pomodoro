@@ -52,7 +52,20 @@ export function MainForm (){
                 formattedSecondsRemaining: formatSecondsToMinutes(secondsRemaining),
                 task: [...prevState.task, newTask],
             }
-        })
+        });
+    }
+
+    function handleInterruptTask(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
+        e.preventDefault();
+
+        setState(prevState =>{
+            return {
+                ...prevState,
+                activeTask: null,
+                secondsRemaining: 0,
+                formattedSecondsRemaining: '00:00',
+            }
+        });
     }
 
     return(
@@ -66,6 +79,7 @@ export function MainForm (){
                     //value={taskName}
                     //onChange={(e) => setTaskName(e.target.value)}
                     ref={taskNameInput}
+                    disabled={!!state.activeTask}
                     />
                 </div>
             
@@ -93,6 +107,7 @@ export function MainForm (){
                         title="Interromper Tarefa atual"
                         icon={<StopCircleIcon/>}
                         color="red"
+                        onClick={handleInterruptTask}
                         />}
                     
                 </div>
